@@ -2,60 +2,89 @@ import React, { useEffect, useState } from 'react';
 import { CenteredGrid } from '../common/styled-components';
 import TextField from '@mui/material/TextField';
 import { flexbox, styled } from '@mui/system';
+import NumberFormat, { InputAttributes } from 'react-number-format';
 import { Grid, Typography } from '@mui/material';
+
+interface CustomProps {
+    onChange: (event: { target: { name: string; value: string } }) => void;
+    name: string;
+}
 
 const Inputfield = styled(TextField)({
     margin: 16,
+});
+
+const NumberFormatCustom = React.forwardRef<
+    NumberFormat<InputAttributes>,
+    CustomProps
+>(function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+
+    return (
+        <NumberFormat
+            {...other}
+            getInputRef={ref}
+            onValueChange={(values) => {
+                onChange({
+                    target: {
+                        name: props.name,
+                        value: values.value,
+                    },
+                });
+            }}
+            thousandSeparator
+            isNumericString
+        />
+    );
 });
 
 const Swap: React.FunctionComponent = () => {
     const [fromAsset, setFromAsset] = useState('ETH');
     const [toAsset, setToAsset] = useState('DERO');
 
-    const [fromAssetValue, setFromAssetValue] = useState(0);
-    const [toAssetValue, setToAssetValue] = useState(0);
+    
 
-    const handleFromAssetValueChange = (value: number) => {
-        setFromAssetValue(value);
-    };
+    const [values, setValues] = useState({
+        fromAssetValue: '0.00',
+        toAssetValue: '0.00',
+    });
 
-    const handleToAssetValueChange = (value: number) => {
-        setToAssetValue(value);
+    const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
     };
 
     return (
         <CenteredGrid sx={{ flexDirection: 'column' }}>
             <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Inputfield
-                    id='outlined-required'
+                <TextField
+                    sx={{ margin: 4 }}
                     label='From'
-                    type='number'
-                    inputProps={{
-                        step: 'any',
+                    value={values.fromAssetValue}
+                    onChange={handleValueChange}
+                    name='fromAssetValue'
+                    id='fromAssetValue'
+                    InputProps={{
+                        inputComponent: NumberFormatCustom as any,
                     }}
-                    defaultValue='0.00'
-                    value={fromAssetValue}
-                    onChange={(e) =>
-                        handleFromAssetValueChange(parseFloat(e.target.value))
-                    }
                 />
                 <Grid sx={{ margin: 'auto' }}>
                     <Typography>{fromAsset}</Typography>
                 </Grid>
             </Grid>
             <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Inputfield
-                    id='outlined-required'
-                    type='number'
-                    inputProps={{
-                        step: 'any',
-                    }}
+                <TextField
+                    sx={{ margin: 4 }}
                     label='To'
-                    defaultValue='0.00'
-                    value={toAssetValue}
-                    onChange={(e) =>
-                        handleToAssetValueChange(parseFloat(e.target.value))
-                    }
+                    value={values.toAssetValue}
+                    onChange={handleValueChange}
+                    name='toAssetValue'
+                    id='toAssetValue'
+                    InputProps={{
+                        inputComponent: NumberFormatCustom as any,
+                    }}
                 />
                 <Grid sx={{ margin: 'auto' }}>
                     <Typography>{toAsset}</Typography>
