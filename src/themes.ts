@@ -20,7 +20,7 @@ export const defaultTheme = createTheme({
       styleOverrides: {
         root: {
           background:
-            "linear-gradient(180deg, #2A5859 0%, #124656 33.85%, #2C3B53 68.23%, #2D2C4B 100%);",
+            "linear-gradient(180deg, rgba(166,73,133,1) 0%, rgba(96,45,156,1) 23%, rgba(77,38,143,1) 39%, rgba(45,40,147,1) 56%, rgba(42,74,150,1) 73%, rgba(73,171,176,1) 100%);",
           borderRadius: 0,
         },
       },
