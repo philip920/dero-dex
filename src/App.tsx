@@ -9,7 +9,6 @@ import { Paper, Grid } from '@mui/material/';
 
 const App: React.FunctionComponent = () => {
 
-  
     return (
         <ThemeProvider theme={defaultTheme}>
             <Paper>

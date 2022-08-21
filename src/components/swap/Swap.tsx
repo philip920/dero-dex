@@ -42,8 +42,6 @@ const Swap: React.FunctionComponent = () => {
     const [fromAsset, setFromAsset] = useState('ETH');
     const [toAsset, setToAsset] = useState('DERO');
 
-    
-
     const [values, setValues] = useState({
         fromAssetValue: '0.00',
         toAssetValue: '0.00',
