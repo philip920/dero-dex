@@ -11,29 +11,19 @@ export const defaultTheme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Signika Negative',
+        fontFamily: 'Saira',
         fontWeightLight: 300,
         fontWeightBold: 700,
     },
 
     components: {
-        // MuiPaper: {
-        //   styleOverrides: {
-        //     root: {
-        //       background: `url(${dexBackground})`,
-        //       // background:
-        //       //   "linear-gradient(180deg, rgba(166,73,133,1) 0%, rgba(96,45,156,1) 23%, rgba(77,38,143,1) 39%, rgba(45,40,147,1) 56%, rgba(42,74,150,1) 73%, rgba(73,171,176,1) 100%);",
-        //       borderRadius: 0,
-        //     },
-        //   },
-        // },
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
                     backgroundImage: `url(${dexBackground})`,
-                     backgroundSize: 'cover',
+                    backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center center',
+                    backgroundPosition: 'center',
                 },
             },
         },
