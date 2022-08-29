@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { CenteredGrid } from '../common/styled-components';
+import { CenteredGrid, TextButton } from '../common/styled-components';
 import TextField from '@mui/material/TextField';
 import { flexbox, styled } from '@mui/system';
 import NumberFormat, { InputAttributes } from 'react-number-format';
 import { Grid, Typography } from '@mui/material';
+import swapInput from '../../assets/swap_input.svg';
+import TokenSelector from './TokenSelector';
 
 interface CustomProps {
     onChange: (event: { target: { name: string; value: string } }) => void;
     name: string;
 }
-
-const Inputfield = styled(TextField)({
-    margin: 16,
-});
 
 const NumberFormatCustom = React.forwardRef<
     NumberFormat<InputAttributes>,
@@ -56,38 +54,53 @@ const Swap: React.FunctionComponent = () => {
 
     return (
         <CenteredGrid sx={{ flexDirection: 'column' }}>
-            <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
-                <TextField
-                    sx={{ margin: 4 }}
-                    label='From'
-                    value={values.fromAssetValue}
-                    onChange={handleValueChange}
-                    name='fromAssetValue'
-                    id='fromAssetValue'
-                    InputProps={{
-                        inputComponent: NumberFormatCustom as any,
-                    }}
-                />
-                <Grid sx={{ margin: 'auto' }}>
-                    <Typography>{fromAsset}</Typography>
+            <Typography sx={{ marginBottom: 2 }}>Swap</Typography>
+            <Grid
+                sx={{
+                    backgroundImage: `url(${swapInput})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center',
+                    paddingX: 10,
+                    marginBottom: 1.5,
+                }}
+            >
+                <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
+                    <TextField
+                        variant='standard'
+                        sx={{ margin: 4 }}
+                        value={values.fromAssetValue}
+                        onChange={handleValueChange}
+                        name='fromAssetValue'
+                        id='fromAssetValue'
+                        InputProps={{
+                            inputComponent: NumberFormatCustom as any,
+                            disableUnderline: true,
+                        }}
+                    />
+                    <Grid sx={{ margin: 'auto' }}>
+                        <TokenSelector selectedAsset={fromAsset} />
+                    </Grid>
+                </Grid>
+                <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
+                    <TextField
+                        variant='standard'
+                        sx={{ margin: 4 }}
+                        value={values.toAssetValue}
+                        onChange={handleValueChange}
+                        name='toAssetValue'
+                        id='toAssetValue'
+                        InputProps={{
+                            inputComponent: NumberFormatCustom as any,
+                            disableUnderline: true,
+                        }}
+                    />
+                    <Grid sx={{ margin: 'auto' }}>
+                        <TokenSelector selectedAsset={toAsset} />
+                    </Grid>
                 </Grid>
             </Grid>
-            <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
-                <TextField
-                    sx={{ margin: 4 }}
-                    label='To'
-                    value={values.toAssetValue}
-                    onChange={handleValueChange}
-                    name='toAssetValue'
-                    id='toAssetValue'
-                    InputProps={{
-                        inputComponent: NumberFormatCustom as any,
-                    }}
-                />
-                <Grid sx={{ margin: 'auto' }}>
-                    <Typography>{toAsset}</Typography>
-                </Grid>
-            </Grid>
+            <TextButton>Connect Wallet</TextButton>
         </CenteredGrid>
     );
 };
