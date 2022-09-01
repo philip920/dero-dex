@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import dexBackground from '../src/assets/dex_background.png';
+
 export const defaultTheme = createTheme({
     palette: {
         primary: {
@@ -20,10 +21,11 @@ export const defaultTheme = createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundImage: `url(${dexBackground})`,
+                    background: `url(${dexBackground}) no-repeat center center fixed`,
                     backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
+                    '-webkit-background-size': 'cover',
+                    '-moz-background-size': 'cover',
+                    '-o-background-size': 'cover',
                 },
             },
         },
@@ -39,10 +41,10 @@ export const defaultTheme = createTheme({
                     background: '#0A040F',
                 },
                 clearIndicator: {
-                    color: '#fff',
+                    color: 'rgba(255, 255, 255, 0.7)',
                 },
                 popupIndicator: {
-                    color: '#fff',
+                    color: 'rgba(255, 255, 255, 0.7)',
                 },
             },
         },

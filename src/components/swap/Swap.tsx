@@ -74,8 +74,6 @@ const Swap: React.FC = () => {
         });
     };
 
-    console.log('values:', values);
-
     return (
         <CenteredGrid sx={{ flexDirection: 'column' }}>
             <Typography sx={{ marginBottom: 2 }}>Swap</Typography>
@@ -87,7 +85,9 @@ const Swap: React.FC = () => {
                     backgroundPosition: 'center center',
                     paddingX: 10,
                     paddingY: 2,
+                    marginX: 'auto',
                     marginBottom: 1.5,
+                    width: 600,
                 }}
             >
                 <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -103,7 +103,7 @@ const Swap: React.FC = () => {
                             disableUnderline: true,
                         }}
                     />
-                    <Grid sx={{ marginY: 'auto', marginRight: 3 }}>
+                    <Grid sx={{ margin: 'auto' }}>
                         <TokenSelector
                             handleChange={handleFromAssetChange}
                             tokenList={hardCodedTokenList}
@@ -123,7 +123,7 @@ const Swap: React.FC = () => {
                             disableUnderline: true,
                         }}
                     />
-                    <Grid sx={{ marginY: 'auto', marginRight: 3 }}>
+                    <Grid sx={{ margin: 'auto' }}>
                         <TokenSelector
                             handleChange={handleToAssetChange}
                             tokenList={hardCodedTokenList}

@@ -12,10 +12,8 @@ const App: React.FunctionComponent = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
-            <Grid sx={{ height: '100vh' }}>
-                <WalletConnector />
-                <Swap />
-            </Grid>
+            <WalletConnector />
+            <Swap />
         </ThemeProvider>
     );
 };

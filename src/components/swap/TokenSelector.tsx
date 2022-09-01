@@ -1,5 +1,5 @@
-import React, { FC, SyntheticEvent, useRef, useState } from 'react';
-import { FormControl, Autocomplete, TextField } from '@mui/material';
+import React, { SyntheticEvent } from 'react';
+import { Autocomplete, TextField } from '@mui/material';
 
 type Props = {
     handleChange: (
@@ -14,7 +14,8 @@ const TokenSelector: React.FC<Props> = ({ handleChange, tokenList }) => (
         sx={{
             border: '2px solid #1C1C1C',
             borderRadius: 3,
-            padding: '5px',
+            padding: '2px',
+            marginRight: 1,
             width: 200,
         }}
         options={tokenList}
@@ -23,6 +24,7 @@ const TokenSelector: React.FC<Props> = ({ handleChange, tokenList }) => (
         renderInput={(params) => (
             <TextField
                 {...params}
+                sx={{ paddingLeft: 1 }}
                 variant='standard'
                 placeholder='Select Token'
                 InputProps={{
