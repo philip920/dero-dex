@@ -6,7 +6,7 @@ import { defaultTheme } from './themes';
 import WalletConnector from './components/wallet-connector/WalletConnector';
 import Swap from './components/swap/Swap';
 
-import { Paper, Grid } from '@mui/material/';
+import { Grid } from '@mui/material/';
 
 const App: React.FunctionComponent = () => {
     return (

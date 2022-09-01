@@ -36,8 +36,13 @@ export const defaultTheme = createTheme({
         MuiAutocomplete: {
             styleOverrides: {
                 paper: {
-                    background: 'transparent',
-                    boxShadow: 'none',
+                    background: '#0A040F',
+                },
+                clearIndicator: {
+                    color: '#fff',
+                },
+                popupIndicator: {
+                    color: '#fff',
                 },
             },
         },

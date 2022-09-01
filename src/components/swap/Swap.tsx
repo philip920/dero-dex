@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { CenteredGrid, TextButton } from '../common/styled-components';
 import TextField from '@mui/material/TextField';
-import { flexbox, styled } from '@mui/system';
 import NumberFormat, { InputAttributes } from 'react-number-format';
 import { Grid, Typography } from '@mui/material';
 import swapInput from '../../assets/swap_input.svg';
@@ -36,21 +35,46 @@ const NumberFormatCustom = React.forwardRef<
     );
 });
 
-const Swap: React.FunctionComponent = () => {
-    const [fromAsset, setFromAsset] = useState('ETH');
-    const [toAsset, setToAsset] = useState('DERO');
+const hardCodedTokenList = ['WETH', 'WBTC', 'WXRP', 'DERO', 'WBNB'];
 
+const Swap: React.FC = () => {
     const [values, setValues] = useState({
-        fromAssetValue: '0.00',
-        toAssetValue: '0.00',
+        fromAsset: 'WETH',
+        toAsset: 'DERO',
+        fromAssetValue: 0.0,
+        toAssetValue: 0.0,
     });
 
-    const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFromAssetChange = (
+        event: SyntheticEvent<Element, Event>,
+        value: string | null
+    ) => {
+        value &&
+            setValues({
+                ...values,
+                fromAsset: value,
+            });
+    };
+
+    const handleToAssetChange = (
+        event: SyntheticEvent<Element, Event>,
+        value: string | null
+    ) => {
+        value &&
+            setValues({
+                ...values,
+                toAsset: value,
+            });
+    };
+
+    const handleValueChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setValues({
             ...values,
             [event.target.name]: event.target.value,
         });
     };
+
+    console.log('values:', values);
 
     return (
         <CenteredGrid sx={{ flexDirection: 'column' }}>
@@ -62,6 +86,7 @@ const Swap: React.FunctionComponent = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center center',
                     paddingX: 10,
+                    paddingY: 2,
                     marginBottom: 1.5,
                 }}
             >
@@ -78,8 +103,11 @@ const Swap: React.FunctionComponent = () => {
                             disableUnderline: true,
                         }}
                     />
-                    <Grid sx={{ margin: 'auto' }}>
-                        <TokenSelector selectedAsset={fromAsset} />
+                    <Grid sx={{ marginY: 'auto', marginRight: 3 }}>
+                        <TokenSelector
+                            handleChange={handleFromAssetChange}
+                            tokenList={hardCodedTokenList}
+                        />
                     </Grid>
                 </Grid>
                 <Grid sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -95,8 +123,11 @@ const Swap: React.FunctionComponent = () => {
                             disableUnderline: true,
                         }}
                     />
-                    <Grid sx={{ margin: 'auto' }}>
-                        <TokenSelector selectedAsset={toAsset} />
+                    <Grid sx={{ marginY: 'auto', marginRight: 3 }}>
+                        <TokenSelector
+                            handleChange={handleToAssetChange}
+                            tokenList={hardCodedTokenList}
+                        />
                     </Grid>
                 </Grid>
             </Grid>
