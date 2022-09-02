@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import WalletConnect from '@walletconnect/client';
 import QRCodeModal from '@walletconnect/qrcode-modal';
-
-import Button from '@mui/material/Button';
+import { TextButton } from '../common/styled-components';
 import { Grid } from '@mui/material';
 
 declare let window: any;
@@ -75,17 +74,15 @@ const WalletConnector: React.FunctionComponent = () => {
                 Connect MetaMask
             </Button> */}
             {connected ? (
-                <Button variant='text' onClick={disconnect}>
+                <TextButton onClick={disconnect}>
                     Disconnec t{walletAddress}
-                </Button>
+                </TextButton>
             ) : (
                 <>
-                    <Button variant='text' onClick={connect}>
-                        Wallet Connect
-                    </Button>
-                    <Button variant='text' onClick={disconnect}>
+                    <TextButton onClick={connect}>Wallet Connect</TextButton>
+                    <TextButton onClick={disconnect}>
                         Disconnect {walletAddress}
-                    </Button>
+                    </TextButton>
                 </>
             )}
         </Grid>
