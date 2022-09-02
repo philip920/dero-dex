@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { defaultTheme } from './themes';
 import WalletConnector from './components/wallet-connector/WalletConnector';
 import Swap from './components/swap/Swap';
-import DeroBridgeApi from './DeroBridgeApi';
+import DeroBridgeApi from './dero-bridge-api/DeroBridgeApi';
 import to from 'await-to-js';
 
 const App: React.FunctionComponent = () => {
