@@ -25,6 +25,8 @@ const App: React.FunctionComponent = () => {
             }
         };
 
+        console.log(bridgeInitText)
+
         window.addEventListener('load', load);
         return () => window.removeEventListener('load', load);
     }, []);
